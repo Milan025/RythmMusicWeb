@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>120</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Playlist
+--
+-name:String
+-icon
+-Song[]:Array
+--
++Add Song()
++Remove Song()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>120</y>
+      <w>160</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Song
+--
+-name:String
+-filename:String
+-artist:String
+-realese date:DateTime
+-Category[]:Array
+--
++Play Song()
++Pause Song()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>330</y>
+      <w>160</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Category
+--
+-name:String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>150</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+has</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>260</y>
+      <w>50</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+has</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,274 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<style>
+  .songcontainer {
+  width: 100%;
+  height: 200px;
+  border: 1px solid gray;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+.songcontainer1 {
+  width: 100%;
+  height: 250px;
+  border: 1px solid gray;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+.songcontainer2{
+  width: 100%;
+  height: 210px;
+  border: 1px solid gray;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+.div2 {
+  width: 150px;
+  height: 150px;  
+  border: 1px solid #ff0066;
+  text-align:center;
+  font-size: 25px;
+  border-radius: 10px;
+}
+.div1{
+  width: 150px;
+  height: 100px;
+}
+.containerImg {
+  position: relative;
+  text-align: center;
+  color: #0099cc;
+}
+.centered {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+
+
+<!--navigation bar start-->
+<div class="container-fluid navbarm">
+    <div class="row form-inline">
+        <div class="col-sm-5 col-md-3 col-lg-3 col-xl-3">
+            <div class="navbar-expand-sm navbar-brand">
+                <a routerLink="" class="sample" style="text-decoration: none"><b>rythm</b></a>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-8 col-lg-8 col-xl-8">
+                <div class="row">
+                    <!--<form class="form-inline" style="width:80%;" action="soon.html">
+                        <div class="form-group has-search" style="width:80%;border-radius:20px;">
+                            <span class="fa fa-search form-control-feedback"></span>
+                         
+                            <input id="search" #search (keyup)=searchSong(search.value) type="text" class="form-control" style="width:100%;border-radius:20px;" id="search" placeholder=" Search... Songs, Artists, Playlists and more" name="search" required>
+                             <div *ngFor="let sg of ssongs">
+                              <a href="#">{{sg.name}}</a>
+                            </div>
+                        </div>
+                    </form>-->
+                </div>
+        </div>
+<br><br><br>
+        <div class="col-sm-2 col-md-1 col-lg-1 col-xl-1" style="left: 10%" *ngIf="isLogin;then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>        
+            <button id="login" class="btn" value="login" style="border-radius:5px;background-color:#87CEEB;color:white;"><a routerLink="/login" routerLinkActive="active" style="text-decoration: none;color:#ffffff;">Login/Signup</a></button>
+            </ng-template>
+            <ng-template #elseBlock>
+                <ng-template #popContent>Hello, <b>{{user}}</b> !!</ng-template>
+                <ng-template #popTitle>
+                  <a routerLink="/myplaylist" style="text-decoration: none">My Favourite</a>
+                  <hr>
+                  <a routerLink="#" (click)="logOut()" style="text-decoration: none">Logout</a></ng-template>
+                  <a routerLink="#" title="{{user}}" [ngbPopover]="popTitle" [popoverTitle]="popContent" class="fa fa-user-circle-o fa-lg" value="login" style="font-size:40px;color:black;border-radius:5px;text-decoration: none;"></a>
+            </ng-template>
+    </div>
+  
+</div>
+<!--navigation bar end-->
+<br><br><br><br>
+
+<div class="container">
+  <h4><b>Recently Released</b></h4>
+  <div class="songcontainer1">
+      
+    <table class="table table-hover">
+      
+      <tbody>
+        <tr >
+          <th  class="col-md-1">
+           
+          </th>
+          <th #td1 class="col-md-4">Title</th>
+          <th #td2 class="col-md-4" >Film/Album</th>
+          <th #td3 class="col-md-4" hidden="true">Release Date</th>
+          <th #td4 class="col-md-4" >Artists</th>
+          <th #td5 class="col-md-4" hidden="true">song.link</th>
+          <th #td6 class="col-md-4" hidden="true">song.catagory</th>
+          
+          
+        </tr>
+        <tr *ngFor="let song of recentSongs">
+          <td  class="col-md-1">
+            <i (click)=playSong(td5.innerHTML,td1.innerHTML) class="fa fa-play" title="Play"></i>
+          </td>
+          <td #td1 class="col-md-4">{{song.name}}</td>
+          <td #td2 class="col-md-4" >{{song.filmname}}</td>
+          <td #td3 class="col-md-4" hidden="true">{{song.releasedate}}</td>
+          <td #td4 class="col-md-4" >{{song.artists}}</td>
+          <td #td5 class="col-md-4" hidden="true">{{song.link}}</td>
+          <td #td6 class="col-md-4" hidden="true">{{song.catagory}}</td>
+        
+        
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br/>
+  <hr>
+    <div>
+      <table> 
+        <tr> 
+          <td><h4><b>Playlists</b></h4></td>
+          <td>
+            <input class="form-control" style="margin-left:20px;width: 100%;" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Playlist...">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br/>
+      <div class="songcontainer">
+      
+        <table class="table table-hover">
+          <tbody>
+            
+              <td *ngFor="let pnm of playlists | filter:searchText">
+                <div class="div1">
+                  <a routerLink="/playlist/{{pnm.name}}" title="{{pnm.name}}" routerLinkActive="active" style="text-decoration: none;color:#ffffff">
+                    <img class="img-fluid" src="assets/images/{{pnm.name}}.png" style="border-radius:10px"><br/>
+                  </a>
+                  
+                </div>
+                
+              </td>
+            
+            
+          </tbody>
+        </table>
+      </div>
+    
+    <br/>
+    <hr>
+
+    <h4><b>Catagories</b></h4>
+    <div class="songcontainer2">
+      
+      <table class="table table-hover">
+        <tbody>
+          <td *ngFor="let pnm of catagories">
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $(".div2").hover(function(){
+                    var r = Math.floor(Math.random() * 255);
+                    var g = Math.floor(Math.random() * 255);
+                    var b = Math.floor(Math.random() * 255);
+                     var color = 'rgb(' + r + ',' + g + ',' + b + ')';
+                     $(this).css("background-color",color);
+                    })
+                    
+                });
+            </script> -->
+            <div class="div2" title="{{pnm.Catagory}}">
+              <a routerLink="/catagory/{{pnm.Catagory}}" title="{{pnm.Catagory}}" routerLinkActive="active" style="text-decoration: none">
+                <div class="containerImg div2">
+                <img class="img-fluid" src="assets/images/ct.png"/>
+                <div class="centered">{{pnm.Catagory}}</div>
+                </div>
+              </a>
+            </div>
+          </td>
+        </tbody>
+      </table>
+    </div>
+
+
+    
+  <!-- <div class="card-group">
+    <div class="card" *ngFor="let pnm of playlists">
+      <div class="card-body text-center">
+        <a routerLink="/playlist/{{pnm.name}}" title="{{pnm.name}}" routerLinkActive="active" style="text-decoration: none;color:#ffffff">
+          <img class="img-fluid" src="assets/images/{{pnm.name}}.png" style="border-radius:10px ">
+          </a>
+      </div>
+    </div>      
+  </div> -->
+
+  <!-- <br>
+  <h4>All Time Hits</h4>
+  <div class="card-group">
+    <div class="card" *ngFor="let pnm of playlists">
+      <div class="card-body text-center">
+        <a routerLink="/playlist/{{pnm.name}}" title="{{pnm.name}}" routerLinkActive="active" style="text-decoration: none;color:#ffffff">
+          <img class="img-fluid" src="assets/images/{{pnm.name}}.png" style="border-radius:10px ">
+          </a>
+      </div>
+    </div>  
+  </div>
+  <br>
+  <h4>Trending Songs</h4>
+  <div class="card-group">
+    <div class="card" *ngFor="let pnm of playlists">
+      <div class="card-body text-center">
+        <a routerLink="/playlist/{{pnm.name}}" title="{{pnm.name}}" routerLinkActive="active" style="text-decoration: none;color:#ffffff">
+          <img class="img-fluid" src="assets/images/{{pnm.name}}.png" style="border-radius:10px ">
+          </a>
+      </div>
+    </div>  
+  </div>
+  <br>
+  <h4>rythm Originals</h4>
+  <div class="card-group">
+    <div class="card" *ngFor="let pnm of playlists">
+      <div class="card-body text-center">
+        <a routerLink="/playlist/{{pnm.name}}" title="{{pnm.name}}" routerLinkActive="active" style="text-decoration: none;color:#ffffff">
+          <img class="img-fluid" src="assets/images/{{pnm.name}}.png" style="border-radius:10px ">
+          </a>
+      </div>
+    </div>  
+  </div> -->
+</div>
+
+    <br><br>
+<!--footer starts-->
+<app-footer></app-footer>
+<!--footer starts-->
+  
+
+<style>
+  .player {
+    opacity:1;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left:0;
+    width: auto;
+    height:80px;
+    box-shadow: 2px 0px 20px 0px rgba(0, 0, 0, 0.2), 16px 0px 20px 0px rgba(0, 0, 0, 0.19);
+    z-index: 1;
+  }
+</style>    
+<div class="player">
+  <mat-basic-audio-player [audioUrl]="msbapAudioUrl" [title]="msbapTitle" [autoPlay]="false" muted="muted"
+    [displayTitle]="msbapDisplayTitle" [displayVolumeControls]="msaapDisplayVolumeControls" ></mat-basic-audio-player>
+</div>  
+
+ 

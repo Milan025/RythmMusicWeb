@@ -1,0 +1,12 @@
+import { OnInit } from '@angular/core';
+import { BaseAudioPlayerFunctions } from '../base/base-audio-player-components';
+export declare class MatBasicAudioPlayerComponent extends BaseAudioPlayerFunctions implements OnInit {
+    title: string;
+    audioUrl: string;
+    displayTitle: boolean;
+    autoPlay: boolean;
+    displayVolumeControls: boolean;
+    constructor();
+    ngOnInit(): void;
+    resetSong(): void;
+}

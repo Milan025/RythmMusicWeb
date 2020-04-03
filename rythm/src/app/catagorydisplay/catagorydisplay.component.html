@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<!--navigation bar start-->
+<div class="container-fluid navbarm">
+    <div class="row form-inline">
+        <div class="col-sm-5 col-md-3 col-lg-3 col-xl-3">
+                <div class="navbar-expand-sm navbar-brand">
+                        <a routerLink="" class="sample" style="text-decoration: none"><b>rythm</b></a>
+                </div>
+        </div>
+        <div class="col-sm-5 col-md-8 col-lg-8 col-xl-8">
+                <div class="row">
+                    <form class="form-inline" style="width:80%;" action="soon.html">
+                        <div class="form-group has-search" style="width:80%;border-radius:20px;">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input id="search" type="text" class="form-control" style="width:100%;border-radius:20px;" id="search" placeholder=" Search... Songs, Artists, Playlists and more" name="search" required>
+                        
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <div class="col-sm-2 col-md-1 col-lg-1 col-xl-1" style="left: 10%" *ngIf="isLogin;then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>        
+        <button id="login" class="btn" value="login" style="border-radius:5px;background-color:#87CEEB;color:white;"><a routerLink="/login" routerLinkActive="active" style="text-decoration: none;color:#ffffff">Login/Signup</a></button>
+        </ng-template>
+        <ng-template #elseBlock>
+                <ng-template #popContent>Hello, <b>{{user}}</b> !!</ng-template>
+                <ng-template #popTitle>
+                  <a routerLink="/myplaylist" style="text-decoration: none">My Fevourite</a>
+                  <hr>
+                  <a routerLink="#" (click)="logOut()" style="text-decoration: none">Logout</a></ng-template>
+                  <a routerLink="#" title="{{user}}" [ngbPopover]="popTitle" [popoverTitle]="popContent" class="fa fa-user-circle-o fa-lg" value="login" style="font-size:40px;color:black;border-radius:5px;text-decoration: none;"></a>
+        </ng-template>
+
+    </div>
+  
+</div>
+<!--navigation bar end-->
+<br><br><br>
+<div class="container" style="background-color:#eeeeee;">
+<div class="row" >
+  <div class="col"></div>
+  <div class="col-md-8">
+        <div>
+            <!-- <img src="assets/images/{{pnm}}.png" class="logo"> -->
+            <b style="font-size: 25px">{{pnm}}</b>
+        </div>
+  </div>
+  <div class="col"></div>
+</div>
+<div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col-md-8">				
+                <table class="table table-hover">
+                    <tr class="row">
+                        <th class="col-md-1">#</th>
+                        <th class="col-md-3">TITLE</th>
+                        <th class="col-md-2">ARTISTS</th>
+                        <th class="col-md-3">FILMNAME</th>
+                    </tr>
+                </table>
+                <table id="table" class="table table-hover" *ngFor="let song of songs;index as i" >
+                    <tr class="row">
+                            <td class="col-md-1" (click)=playSong(td1.innerHTML)>{{i+1}}</td>
+                            <td #td1 class="col-md-3" (click)=playSong(td1.innerHTML)>{{song.name}}</td>
+                            <td class="col-md-2" (click)=playSong(td1.innerHTML)>{{song.artists}}</td>
+                            <td class="col-md-3" (click)=playSong(td1.innerHTML)>{{song.filmname}}</td>
+                            
+                            <td class="col-md-1" *ngIf="isLogin;then eb else tb"></td>
+                            <ng-template #tb>
+                                <a routerLink="/catagory/{{pnm}}" style="margin-left:30px;margin-top:15px;color:black;text-decoration: none;"><i (click)=likeSong(td1.innerHTML) title="add to My Favourite" class="fa fa-heart-o" style="font-size:20px;"></i></a>&nbsp;
+                            </ng-template>
+                            <ng-template #eb>
+                            </ng-template>
+
+                            <td class="col-md-1" *ngIf="isLogin;then eb1 else tb1"></td>
+                            <ng-template #tb1>
+                                <a href="../../assets/songs/{{song.link}}" style="margin-left:30px;margin-top:15px;color:black;text-decoration: none;" download><i class="fa fa-download" title="Download Song" style="font-size:20px;"></i></a>
+                            </ng-template>
+                            <ng-template #eb1>
+                            </ng-template>
+                        
+
+                            
+                    </tr>                    
+                </table>
+            </div>
+            <div class="col"></div>
+</div>
+</div>
+
+<br>
+<!--footer starts-->
+<app-footer></app-footer>
+<!--footer starts-->
+  
+<style>
+        .player {
+          opacity:1;
+          background-color: white;
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          left:0;
+          width: auto;
+          height:80px;
+          box-shadow: 2px 0px 20px 0px rgba(0, 0, 0, 0.2), 16px 0px 20px 0px rgba(0, 0, 0, 0.19);
+          z-index: 1;
+        }
+    </style>    
+<div class="player">
+    <mat-basic-audio-player [audioUrl]="msbapAudioUrl" [title]="msbapTitle" 
+[displayTitle]="msbapDisplayTitle" [displayVolumeControls]="msaapDisplayVolumeControls" ></mat-basic-audio-player>
+</div>  
+
+
+

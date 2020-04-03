@@ -1,0 +1,119 @@
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+	<div class="container" style="text-align: center">
+		<div class="col-md-12"style="padding-top:90px">
+			<div  class="sample" style="font-size:60px;">
+				rythm
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-12">
+			<div  class="sample">
+				all your music at one place
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="lgdiv">
+    <form (submit)=loginUser($event) id="lfm" method="post" style="text-align: center">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="padding-top:20px" >
+				<input type="email" id="lemail" class="form-control" style="border-radius:20px;" placeholder="Enter email" name="email" required>
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<input type="password" id="lpass" class="form-control" style="border-radius:20px;" placeholder="Enter password" min="8" name="pass" required minlength="8"> 
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<button id="lgbtn" type="submit" class="btn" value="Login" style="border-radius:20px;background-color:#87CEEB;color:white;width:100%;">Login</button>
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<a routerLink="/forgot" id="forgot" value="Signup">Forgot Password ?</a>
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div id="noac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				No mmusic account ? <a routerLink="/signup" id="sbtn" value="Signup">Signup</a>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div id="noac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+          <a routerLink="/">Home</a>
+        </div>
+    </div>
+    </form>
+    </div>
+    <br>
+    
+    
+    
+	</div>
+<script>
+$(document).ready(function(){
+  $("#sgbtn").mouseover(function(){
+    $('#sgbtn').addClass('shadow');
+  });
+  $("#sgbtn").mouseout(function(){
+    $('#sgbtn').removeClass('shadow');
+  });
+  $("#semail").mouseover(function(){
+    $('#semail').addClass('shadow');
+  });
+  $("#semail").mouseout(function(){
+    $('#semail').removeClass('shadow');
+  });
+  $("#femail").mouseover(function(){
+    $('#femail').addClass('shadow');
+  });
+  $("#femail").mouseout(function(){
+    $('#femail').removeClass('shadow');
+  });
+  $("#lemail").mouseover(function(){
+    $('#lemail').addClass('shadow');
+  });
+  $("#lemail").mouseout(function(){
+    $('#lemail').removeClass('shadow');
+  });
+  $("#lgbtn").mouseover(function(){
+    $('#lgbtn').addClass('shadow');
+  });
+  $("#lgbtn").mouseout(function(){
+    $('#lgbtn').removeClass('shadow');
+  });
+  $("#fbtn").mouseover(function(){
+    $('#fbtn').addClass('shadow');
+  });
+  $("#fbtn").mouseout(function(){
+    $('#fbtn').removeClass('shadow');
+  });
+  $("#lpass").mouseover(function(){
+    $('#lpass').addClass('shadow');
+  });
+  $("#lpass").mouseout(function(){
+    $('#lpass').removeClass('shadow');
+  });
+  $("#spass").mouseout(function(){
+    $('#spass').removeClass('shadow');
+  });
+  $("#spass").mouseover(function(){
+    $('#spass').addClass('shadow');
+  });
+  $("#srepass").mouseover(function(){
+    $('#srepass').addClass('shadow');
+  });
+  $("#srepass").mouseout(function(){
+    $('#srepass').removeClass('shadow');
+  });
+});
+</script>

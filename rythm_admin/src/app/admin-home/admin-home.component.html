@@ -1,0 +1,100 @@
+<app-header-admin></app-header-admin>
+<br><br><br><br>
+<style>
+    
+.column {
+	float: left;
+	width: 50%;
+	padding: 10px;
+	height: 400px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+
+  .songcontainer {
+      width: 70%;
+      height: 345px;
+      margin-top: 10px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+</style>
+    <div class="container">
+        <h4><b>General Statistics</b></h4>
+
+        <table class="table table-bordered" style="width: 25%;">
+            
+            <tr>
+                <td>
+                    Total Songs:
+                    </td>
+                <td>
+                    {{count.songCount}}
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    Total Playlists:
+                    </td>
+                <td>
+                    {{count.plCount}}
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    Total Categories:
+                    </td>
+                <td>
+                    {{count.catCount}}
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    Registered Users:
+                    </td>
+                <td>
+                    {{count.userCount}}
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row">
+                <div class="column" style="border-right: 1px solid;">
+                    <h4><b>Category wise Songs Count</b></h4>
+                    <div class="songcontainer">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr *ngFor="let ct of categories">
+                              
+                              <td class="col-md-8">{{ct._id}}</td>
+                              <td class="col-md-4">{{ct.count}}</td>
+                              
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                </div>
+                <div class="column">
+                    <h4 style="margin-left: 20px;"><b>Playlist wise Songs Count</b></h4>
+                    <div class="songcontainer" style="margin-left: 20px;">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr *ngFor="let pl of loadpl">
+                              
+                              <td class="col-md-9">{{pl.name}}</td>
+                              <td class="col-md-3">{{pl.songs.length}}</td>
+                              
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                </div>
+            </div>
+    </div>
+
+<app-footer-admin></app-footer-admin>

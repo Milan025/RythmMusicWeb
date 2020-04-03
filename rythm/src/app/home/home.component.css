@@ -1,0 +1,253 @@
+
+/*.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	z-index:99;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display:flex;
+	background: url(../src/ldf.gif) center no-repeat #fff;
+}
+@keyframes fadeOut{
+	100%{
+		opacity:0;
+		visibility:hidden;
+	}
+}
+popup*/
+.carousel-control-next {
+	right: -9%;
+	z-index: -1;
+  }
+  .carousel-control-prev {
+	left: -9%;
+	z-index: -1;
+  }
+  
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon {
+	background-color: black;
+  }
+
+  body {font-family: 'Quicksand-Medium'}
+  @font-face {
+	  font-family: "ForteMT";
+	  src: url("/assets/fonts/FORTE.woff") format("woff");
+  }
+  @font-face {
+	  font-family: "ForteMT";
+	  src: url("/assets/fonts/FORTE.woff") format("woff");
+  }
+.navbarm {
+  opacity:0.9;
+  background-color: white;
+  position: fixed;
+  top:0;
+  height:auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 1;
+}
+footer{
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.shadow{
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+footer img {
+ width: 30px;
+}
+/*.navbarm a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 15px;
+}
+.navbarm a:hover {
+  //color: pink;
+  border-bottom:3px solid pink;
+}
+#hm{
+border-bottom:2px solid black;
+}
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  
+}
+@font-face {
+  font-family: "ForteMT";
+
+  /* src: url("../src/FORTE.woff") format("woff"); Modern Browsers 
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Quicksand-Medium";
+
+  /*src: url("../src/Quicksand-Medium.woff") format("woff"); /* Modern Browsers 
+  font-weight: normal;
+  font-style: normal;
+}*/
+.sample {
+	margin:5px;
+    font-family: 'ForteMT';
+    font-size: 40px;
+	color:red;
+}
+
+/*
+#player{
+	display:inline-block;
+	padding:25px;
+	color:#333;
+	padding-bottom:50px
+}
+*/
+#songtitle{
+	width:300px;
+	text-align:right;
+	font-family:monospace;
+	font-size:18px;
+}
+
+#buttons{
+	height:50px;
+	width:auto;
+	margin-top:30px;
+	position:absolute;
+	top:10%;
+	left:47%;
+	transform:translate(-50%,-50%);
+
+}
+
+#play,#next,#pre{
+	width:50px;
+	height:50px;
+	border:0;
+	background-color:royalblue;
+	border-radius:50%;
+	outline:none;
+	cursor:pointer;
+	position:relative;
+	top:48%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+#next{
+	width:40px;
+	height:40px;
+	left:63%;
+	transform:translate(-50%,-50%);
+}
+#pre{
+	width:40px;
+	height:40px;
+	left:30%;
+	transform:translate(-50%,-50%);
+}
+#play img,#next img,#pre img{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+
+
+#seek-bar{
+	width:80%;
+	height:5px;
+	background-color:gray;
+	display:flex;
+	border-radius:50px;
+	margin-left:25px;
+	cursor:pointer;
+}
+
+#fill{
+	height:5px;
+	background-color:royalblue;
+	border-radius:20px;
+}
+
+#handle{
+	width:10px;
+	height:10px;
+	background-color:royalblue;
+	border-radius:50%;
+	margin-left:-5px;
+	margin-top:-2px;
+	transform:sacle(2);
+}
+
+#currenttime{
+	font-family:monospace;
+	font-size:14px;
+	position:relative;
+	padding-top:5px;
+}	
+#volume{
+	position:relative;
+	top:100%;
+	left:80%;
+	transform:translate(-50%,-20%);
+	display:flex;
+}
+
+
+#volumeIcon{
+	height:35px;
+	width:35px;
+	border-radius:50%;
+	
+}
+
+#decrease,#increase{
+	height:30px;
+	width:30px;
+	background-color:royalblue;
+	border:none;
+	outline:none;
+	border-radius:50%;
+	font-family:fantasy;
+	font-size:25px;
+	color:white;
+	text-align:center;
+	line-height:18px;
+	position:relative;
+	left:-2px;
+	top:3px;
+	cursor:pointer;
+}
+#increase{
+	left:3px;
+	top:3px;
+}
+
+#flex{
+	position:absolute;
+	top:50%;
+	left:19%;
+	display:flex;
+}
+.has-search .form-control {
+	padding-left: 2.375rem;
+  }
+  
+  .has-search .form-control-feedback {
+	position: absolute;
+	z-index: 2;
+	display: block;
+	width: 2.375rem;
+	height: 2.375rem;
+	line-height: 2.375rem;
+	text-align: center;
+	pointer-events: none;
+	color: #aaa;
+  }

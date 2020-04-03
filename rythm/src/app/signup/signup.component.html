@@ -1,0 +1,72 @@
+    <title>LOGIN/SIGNUP mmusic.com</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<link rel="stylesheet" href="w3.css">-->
+	<link rel = "icon" type = "image/x-icon" href = "./src/m.jpg"/>
+   <link rel = "apple-touch-icon" type = "image/x-icon" href = "./src/m.jpg"/>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+    <div class="container"  style="text-align: center">
+		<div class="col-md-12"style="padding-top:90px">
+			<div  class="sample" style="font-size:60px;">
+				mmusic.com
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-12">
+			<div  class="sample">
+				all your music at one place
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		
+    <div id="sgdiv" style="margin-top:20px">
+    <form (submit)=signupUser($event) id="sfm" method="post">
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+				<input type="text" id="unm" class="form-control" style="border-radius:20px;" placeholder="Enter Your Name" required name="unm">
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<input type="email" id="semail" class="form-control" style="border-radius:20px;" placeholder="Enter email" required name="email">
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<input type="password" id="spass" class="form-control" style="border-radius:20px;" placeholder="Enter password" required min="8" name="pass" minlength="8">
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<input type="password" id="srepass" class="form-control" style="border-radius:20px;" placeholder="Conform password" required min="8" name="repass" minlength="8" >
+        
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				<button type="submit" id="sgbtn" class="btn" value="Signup" style="border-radius:20px;background-color:#87CEEB;color:white;width:100%;">Sign Up</button>
+      </div>
+      </div>
+      <div class="row" style="text-align: center">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+			<div id="hvac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+				Have mmusic account ? <a routerLink="/login" id="lbtn" value="Signup">Login</a>
+      </div>
+      </div>
+      <div class="row" style="text-align: center">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div id="noac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+          <a routerLink="/">Home</a>
+        </div>
+    </div>
+		</form>
+  </div>
+  <br>
+	
+	</div>

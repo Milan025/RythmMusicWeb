@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "ForteMT";
+    src: url("/assets/fonts/FORTE.woff") format("woff");
+}
+@font-face {
+    font-family: "ForteMT";
+    src: url("/assets/fonts/FORTE.woff") format("woff");
+}
+body {font-family: 'Quicksand-Medium'}
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.sample {
+	margin:5px;
+    font-family: 'ForteMT';
+    font-size: 40px;
+	color:red;
+}
+

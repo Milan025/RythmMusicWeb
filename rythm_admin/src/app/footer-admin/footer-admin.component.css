@@ -1,0 +1,38 @@
+
+   
+  body {font-family: 'Quicksand-Medium'}
+  @font-face {
+	  font-family: "ForteMT";
+	  src: url("/assets/fonts/FORTE.woff") format("woff");
+  }
+  @font-face {
+	  font-family: "ForteMT";
+	  src: url("/assets/fonts/FORTE.woff") format("woff");
+  }
+  
+ .sample{
+  font-family: 'ForteMT';
+  font-size: 25px;
+  color:red;
+ }
+
+  
+   a:hover, .media a:focus
+  {
+    text-decoration: none !important;
+    outline: none;
+    color: #ececec;
+    text-align: left;
+  }
+  .icon-background1 {
+    color: #3b5998;
+}
+.icon-background2 {
+  color:#4099FF;
+}
+.icon-background3 {
+  color:palevioletred;
+}
+.icon-background4 {
+  color:#d34836;
+}

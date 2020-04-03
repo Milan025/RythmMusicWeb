@@ -1,0 +1,17 @@
+import { ElementRef } from '@angular/core';
+import { MatSlider } from '@angular/material';
+export declare class BaseAudioPlayerFunctions {
+    player: ElementRef;
+    timeLineDuration: MatSlider;
+    loaderDisplay: boolean;
+    isPlaying: boolean;
+    currentTime: number;
+    volume: number;
+    duration: number;
+    currTimePosChanged(event: any): void;
+    bindPlayerEvent(): void;
+    playBtnHandler(): void;
+    play(): void;
+    toggleVolume(): void;
+    private setVolume;
+}

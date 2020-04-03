@@ -1,0 +1,46 @@
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	
+	<div class="container" style="text-align: center">
+		<div class="col-md-12"style="padding-top:90px">
+			<div  class="sample" style="font-size:60px;">
+				rythm
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-12">
+			<div  class="sample">
+				all your music at one place
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+    <div id="forgot">
+      <form (submit)=forgot($event) id="ffm" method="get">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px" >
+          <input type="email" id="femail" class="form-control" style="border-radius:20px;" required placeholder="Enter your account email " name="femail">
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+          <button id="fbtn" class="btn" value="Login" style="border-radius:20px;background-color:#87CEEB;color:white;width:100%;">Go</button>
+        </div>
+        </div>
+        <div class="row" style="text-align: center">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+          <div id="noac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+            <a routerLink="/login">Back</a>
+          </div>
+        </div>
+        <div class="row" style="text-align: center">
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+          <div id="noac" class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+            <a routerLink="/">Home</a>
+          </div>
+      </div>
+      </form>
+    </div>
+    </div>

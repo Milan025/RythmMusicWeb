@@ -1,0 +1,37 @@
+	<div class="container" style="text-align: center">
+		<div class="col-md-12"style="padding-top:90px">
+			<div  class="sample" style="font-size:60px;">
+				rythm
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-12">
+			<div  class="sample">
+				all your music at one place
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+    <div id="forgot">
+      <form id="ffm" (submit)=Otp($event) method="post">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="text-align:left;margin-top:20px" >
+          Enter 4 digit OTP sent on your <b>{{mail}}</b> 
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px" >
+          <input type="otp" max="4" minlength="4" id="otp" class="form-control" style="border-radius:20px;" required placeholder="Enter 4 digit OTP" name="otp">
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top:20px">
+          <button id="fbtn" class="btn" value="Login" style="border-radius:20px;background-color:#87CEEB;color:white;width:100%;">Verify</button>
+        </div>
+        </div>
+      </form>
+    </div>
+    </div>

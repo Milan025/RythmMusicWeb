@@ -1,0 +1,264 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 800px; /* Should be removed. Only for demonstration */
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .plcontainer {
+      width: 90%;
+      height: 100px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+    .updateplcontainer
+    {
+      width: 120%;
+      height: 150px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+    .songcontainer {
+      width: 90%;
+      height: 300px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+    .songUpdatecontainer{
+      width: 120%;
+      height: 200px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+    .fa-circl {
+    background-color: green;
+    padding: 5px;
+    border-radius: 150%;
+    }
+
+    .fa-circl1 {
+    background-color: red;
+    padding: 5px;
+    border-radius: 150%;
+    }
+</style>
+<app-header-admin></app-header-admin>
+<br><br><br><br>
+    <br>
+    <div class="row">
+      <div class="column" style="border-right: 1px solid;">
+        <h2 style="text-align: center;">Add new Playlist</h2>
+        <div style="padding-left: 100px;">
+          <br>
+          <b style="color: red;">{{succate}}</b>
+          
+          
+              <form class="form-inline" >
+              <table>
+                <tr>
+                  <td>
+                    Playlist Name:
+                  </td>
+                  <td>
+                    <input class="form-control" type="text" name="plname" [(ngModel)]="plname" id="plname" placeholder="Enter New Playlist Name" required />
+                  </td>
+                </tr>
+                <br/>
+                <tr> 
+                  <td>
+                     Icon:
+                  </td>
+                  
+                  <td>
+                     <!-- <input type="file" (change)="handleFileInput($event.target.files)" accept="image/*" /> -->
+                     <input type="file" (change)="handleFileInput($event.target.files)" name="Song" class="form-control-file" id="SongAudio" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)" required accept="image/*"/>
+                    <tr>
+                      <td>
+                        <span style="color: red;font-size: 12px;">(Note: only jpg or png files are allowed)</span>
+                      </td>
+                      
+                    </tr>  
+                  </td>
+                   
+                </tr>
+               
+                <br/>
+                <tr>
+                  <td>
+                    Selected Songs<br> for Playlist:
+                  </td>
+                  <td>
+                    <div class="plcontainer">
+                      <div style="display: inline;" >
+                        <table class="table table-hover">
+                          <tbody>
+                          <tr *ngFor="let i of selectedsongs">
+                            
+                            <td #td2 class="col-md-10" title="{{i}}">{{i}}</td>
+                            
+                            <td class="col-md-2">
+                              <i (click)=RemoveSong(td2.innerHTML) class="fa  fa-minus fa-circl1" style="color: honeydew;" title="Remove Song"></i>
+                            </td>
+                           
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>
+                    Select Songs:
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-control" type="text" style="width: 90%;" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Song...">
+                    </div>
+                    <div class="songcontainer">
+                      <table class="table table-hover">
+                        <tbody>
+                        <tr *ngFor="let song of songs | filter:searchText">
+                          
+                          <td #td1 class="col-md-10" title="{{song.name}}">{{song.name}}</td>
+                           
+                          <td class="col-md-2">
+                            <i (click)=AddSong(td1.innerHTML) class="fa  fa-plus fa-circl" style="color: honeydew;" title="Add Song"></i>
+                          </td>
+                         
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input class="btn btn-primary" type="submit" (click)="uploader.uploadAll()"  [disabled]="!uploader.getNotUploadedItems().length" (click)="addPlaylist(plname)" value="Create Playlist"/>
+                  </td>
+                </tr>
+              </table>
+              <img src="{{imgurl}}" alt="(preview icon)" style="width: 150px;margin-top:-400px;height: 150px;">
+            </form>
+        </div>
+      </div>
+      <div class="column" style="border-left: 1px solid;">
+        <h2 style="text-align: center;">Update Playlist</h2>
+        <div style="padding-left: 100px;">
+            <br>
+            <form class="form-inline" (submit)=updatePlaylist($event)>
+              <table>
+                <tr>
+                  <td>
+                    Playlist Name:
+                  </td>
+                  <td>
+                    <select class="form-control" (change)="selectChangeHandler($event)" required>
+                      <option>-select-</option>
+                      <option *ngFor="let i of playlists" value="{{i.name}}">{{i.name}}</option>
+                    </select>
+                    
+                  </td>
+                  
+                  <td>
+                    <input class="btn btn-danger" type="button" (click)="delete()" value="Remove Playlist" />
+                    <!-- mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage" placement="border-right" (confirm)="removePlaylist()" (cancel)="cancelClicked=true" -->
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>
+                    Rename Playlist:
+                  </td>
+                  <td>
+                    <input class="form-control" name="rename" value="{{rename}}" id="rename" placeholder="Rename here..." required/>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>
+                    Songs in Playlist:
+                  </td>
+                  <td>
+                    <div class="updateplcontainer">
+                      <div style="display: inline;" >
+                        <table class="table table-hover">
+                          <tbody>
+                          <tr *ngFor="let i of plSongs">
+                            
+                            <td #td3 class="col-md-10" title="{{i}}">{{i}}</td>
+                            
+                            <td class="col-md-2">
+                              <i (click)=RemoveSongUP(td3.innerHTML) class="fa  fa-minus fa-circl1" style="color: honeydew;" title="Remove Song"></i>
+                            </td>
+                           
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>
+                    Add Songs:
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-control" type="text" style="width: 120%;" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Song...">
+                    </div>
+                    <div class="songUpdatecontainer">
+                      <table class="table table-hover">
+                        <tbody>
+                        <tr *ngFor="let song of songs | filter:searchText">
+                          
+                          <td #td4 class="col-md-10" title="{{song.name}}">{{song.name}}</td>
+                          
+                          <td class="col-md-2">
+                            <i (click)=AddSongUP(td4.innerHTML) class="fa  fa-plus fa-circl" style="color: honeydew;" title="Add Song"></i>
+                          </td>
+                         
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input type="submit" class="btn btn-primary"  value="Update Changes"/>
+                  </td>
+                </tr>
+              </table>   
+              
+            </form>
+             
+        </div>
+      </div>
+    </div>
+    <app-footer-admin></app-footer-admin>

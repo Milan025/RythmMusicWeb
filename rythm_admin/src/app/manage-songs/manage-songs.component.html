@@ -1,0 +1,155 @@
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: auto; /* Should be removed. Only for demonstration */
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .songcontainer {
+      width: 80%;
+      height: 500px;
+      margin-left: 50px;
+      margin-top: 10px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+    .plcontainer {
+      width: 80%;
+      height: 200px;
+      margin-left: 5px;
+      margin-bottom: 20px;
+      border: 1px solid gray;
+      overflow: auto;
+    }
+</style>
+<app-header-admin></app-header-admin>
+<br><br><br><br>
+    <br>
+    <div class="row">
+      <div class="column" style="border-right: 1px solid;">
+        <h2 style="text-align: center;">Add new Song</h2>
+        <div style="padding-left: 100px;">
+            <br>
+            <form class="form-inline" >
+                
+              <table>
+                <tr> 
+                  <td>Choose Song File:</td>
+                  <td>
+                    <input type="file" name="Song" class="form-control-file" id="SongAudio" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)" required accept="audio/*"/>
+                    <span style="color: red;font-size: 12px;">(Note: only .mp3 are allowed)</span>
+                  </td>
+                  <!-- <input  type="file" name="sfile" id="sfile" accept="image/*" required/> -->
+                </tr>
+                <br/>
+                <tr>
+                  <td>Song Name:</td>
+                  <td>
+                    <input class="form-control" type="text" name="sname" id="sname" placeholder="Enter New Song Name" [(ngModel)]="sname" required/>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Film|Album Name:</td>
+                  <td>
+                    <input class="form-control" type="text" name="fname" id="fname" placeholder="Enter Film|Album Name " [(ngModel)]="fname" required/>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Release Date:</td>
+                  <td>
+                    <input class="form-control" type="date" name="redate" id="redate" placeholder="Enter Release Date of Song" [(ngModel)]="redate" required/>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Artist Name:</td>
+                  <td>
+                    <input class="form-control" type="text" name="artist" id="artist" [(ngModel)]="artist" placeholder="Enter Name of Artist" required/>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Select Catagory of Song:</td>
+                  <td>
+                    <select class="form-control" (change)="selectChangeHandler($event)" required>
+                      <option >-select-</option>
+                      <option  *ngFor="let i of catagories" value="{{i.Catagory}}">{{i.Catagory}}</option>
+                    </select>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Select Playlist(s) for Song: </td>
+                  <td rowspan="2">
+                    <div class="plcontainer">
+                      <div style="display: inline;margin-left: 15px;" (click)="PlSelec(in1.value)" *ngFor="let i of playlists">
+                      <input #in1 class="form-control"  type="checkbox" name="{{i.name}}" value="{{i.name}}">{{i.name}}<br/>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <br/>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input class="btn btn-primary"  type="submit" (click)="uploader.uploadAll()"  [disabled]="!uploader.getNotUploadedItems().length" (click)="addSong({'name':sname,'filmname':fname,'releasedate':redate,'artists':artist})" value="Add Song"/>
+                  </td>
+                </tr>
+              </table>
+            </form>
+        </div>
+      </div>
+      <div class="column" style="border-left: 1px solid;">
+        <h2 style="text-align: center;">Update Song</h2>
+
+        <div class="container">
+          <div class="row">
+            <div>
+              <input class="form-control" type="text" style="margin-left:50px;width: 219%;" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Song...">
+            </div>
+            <div class="songcontainer">
+              <table class="table table-hover">
+                <tbody>
+                <tr *ngFor="let song of songs | filter:searchText">
+                  
+                  <td #td1 class="col-md-10">{{song.name}}</td>
+                  <td #td2 class="col-md-4" hidden="true">{{song.filmname}}</td>
+                  <td #td3 class="col-md-4" hidden="true">{{song.releasedate}}</td>
+                  <td #td4 class="col-md-4" hidden="true">{{song.artists}}</td>
+                  <td #td5 class="col-md-4" hidden="true">{{song.link}}</td>
+                  <td #td6 class="col-md-4" hidden="true">{{song.catagory}}</td>
+                  <td hidden="true" class="col-md-2">
+                    <i (click)=playSong(td1.innerHTML) class="fa fa-play" title="Play"></i>
+                  </td>
+                  <td class="col-md-1">
+                    <i  (click)=open(td1.innerHTML,td2.innerHTML,td3.innerHTML,td4.innerHTML,td6.innerHTML,td5.innerHTML)  class="fa fa-edit" title="Update Song"></i>
+                  </td>
+                  <td class="col-md-1">
+                    <a style="text-decoration: none;"><i (click)="delete(td1.innerHTML,td5.innerHTML)" class="fa fa-trash-o" style="color: red;" title="Delete Song"></i></a>
+                    <!-- mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                      [popoverMessage]="popoverMessage" placement="border-right" (confirm)="removeSong(td1.innerHTML,td5.innerHTML)" (cancel)="cancelClicked=true"  -->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer-admin></app-footer-admin>
+   
